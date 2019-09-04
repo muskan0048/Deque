@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/icons8_open_envelope_40"/>
+
+    <in.app.dequeue.customfonts.MyTextView_Roboto_Medium
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/need"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"/>
+    <in.app.dequeue.customfonts.MyTextView_Roboto_Medium
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/auth"
+        android:textColor="@android:color/darker_gray"
+        android:textSize= "15sp"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:id="@+id/spin"
+        android:layout_marginLeft="98dp"
+        android:layout_marginRight="98dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginRight="98dp"
+        android:background="@android:color/darker_gray"/>
+
+    <in.app.dequeue.customfonts.EditText_Roboto_Regular
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:inputType="number"
+        android:background="@color/transperent"
+        android:hint="@string/phone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginRight="98dp"
+        android:background="@android:color/darker_gray"/>
+
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient2">
+
+    <in.app.dequeue.customfonts.MyTextView_Roboto_Medium
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/verify"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"/>
+
+    <in.app.dequeue.customfonts.MyTextView_Roboto_Medium
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/sent"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"/>
+
+    <in.app.dequeue.customfonts.MyTextView_Roboto_Medium
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/number"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"/>
+
+    <com.chaos.view.PinView
+        android:id="@+id/pinView"
+        style="@style/PinWidget.PinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:cursorVisible="true"
+        android:layout_marginTop="50dp"
+        app:cursorColor="@android:color/black"
+        app:cursorWidth="1dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:itemCount="4"
+        app:itemHeight="40dp"
+        app:itemRadius="3dp"
+        app:itemSpacing="0dp"
+        app:itemWidth="30dp"
+        android:layout_gravity="center"
+        app:lineColor="@android:color/white"
+        app:lineWidth="0dp"
+        android:background="@drawable/round"
+        app:viewType="rectangle" />
+
+    <in.app.dequeue.customfonts.MyTextView_Roboto_Medium
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/resend"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "913989989457",
+    "firebase_url": "https://dequeue-840c8.firebaseio.com",
+    "project_id": "dequeue-840c8",
+    "storage_bucket": "dequeue-840c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913989989457:android:389b95b1e6343366",
+        "android_client_info": {
+          "package_name": "in.app.dequeue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913989989457-5nb1nvlml580uukrjhg3mgohnrn1n1mu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.app.dequeue",
+            "certificate_hash": "023810afccec5fb563edeaa5252b81bad6e75a22"
+          }
+        },
+        {
+          "client_id": "913989989457-gf7gvm1d04itmpp4j2o81tp9cp40an12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl4d69rEcUtW0gxpAft561F4RcG91Wicw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913989989457-gf7gvm1d04itmpp4j2o81tp9cp40an12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
