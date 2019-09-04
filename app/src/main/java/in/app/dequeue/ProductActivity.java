@@ -241,7 +241,7 @@ public class ProductActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductActivity.this, PrePaymentActivity.class);
-                intent.putExtra("amount", ""+sum1);
+                intent.putExtra("amount", ""+(100*sum1));
                 startActivity(intent);
             }
         });
