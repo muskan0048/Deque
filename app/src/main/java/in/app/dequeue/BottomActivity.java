@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import in.app.dequeue.Fragments.AccountFragment;
 import in.app.dequeue.Fragments.HomeFragment;
 import in.app.dequeue.Fragments.ScanFragment;
+import in.app.dequeue.Fragments.SearchFragment;
 
 public class BottomActivity extends AppCompatActivity {
     Fragment fragment;
@@ -28,12 +29,15 @@ public class BottomActivity extends AppCompatActivity {
 
                 case R.id.navigation_home:
                     fragment = new HomeFragment();
+                    break;
                 case R.id.navigation_dashboard:
-                    fragment = new ScanFragment();
+                    fragment = new SearchFragment();
+                    break;
                  //   mTextMessage.setText(R.string.title_dashboard);
                 case R.id.navigation_notifications:
                    // mTextMessage.setText(R.string.title_notifications);
                     fragment = new AccountFragment();
+                    break;
             }
 
             return loadFragment(fragment);
@@ -42,6 +46,7 @@ public class BottomActivity extends AppCompatActivity {
 
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
+
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()

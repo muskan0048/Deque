@@ -122,8 +122,11 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result rawResult) {
-        Toast.makeText(this, "Contents = " + rawResult.getText() +
-                ", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Contents = " + rawResult.getText() +
+          //      ", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getApplicationContext(), "Adding Product..", Toast.LENGTH_LONG).show();
+
         try{
             Constants.pid=rawResult.getText();
             //ProductActivity productActivity = new ProductActivity();
