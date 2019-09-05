@@ -35,7 +35,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
-    TextView txtForgot, txtRegister;
+    TextView txtForgot, txtRegister, txtSkip;
     ImageView imgFb, imgGoogle, img;
     CircularProgressButton login;
     FirebaseAuth firebaseAuth;
@@ -130,6 +130,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        txtSkip = findViewById(R.id.textViewSkip);
+        txtSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, BottomActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
