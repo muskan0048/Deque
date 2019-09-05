@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,13 +18,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
+import com.razorpay.Razorpay;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class PrePaymentActivity extends AppCompatActivity implements PaymentResultListener {
+public class PrePaymentActivity extends AppCompatActivity  {
 
     EditText phone, amount;
+    WebView webview;
 
 
 
@@ -32,84 +36,71 @@ public class PrePaymentActivity extends AppCompatActivity implements PaymentResu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_payment);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        Button btn = (Button) findViewById(R.id.start_transaction);
+       // Button btn = (Button) findViewById(R.id.start_transaction);
         Checkout.preload(getApplicationContext());
 
-        phone = (EditText) findViewById(R.id.phone);
-        amount = (EditText) findViewById(R.id.amountid);
+        //phone = (EditText) findViewById(R.id.phone);
+       // amount = (EditText) findViewById(R.id.amountid);
         amount.setText(getIntent().getStringExtra("amount"));
         amount.setVisibility(View.INVISIBLE);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              //  startpay();
-                startPayment();
-            }
-        });
-    }
-
-    public void startPayment() {
-        /**
-         * Instantiate Checkout
-         */
-
-        Checkout checkout = new Checkout();
-
-        /**
-         * Set your logo here
-         */
-        checkout.setImage(R.mipmap.self1);
-
-        /**
-         * Reference to current activity
-         */
-        final Activity activity = this;
-/**
- * Pass your payment options to the Razorpay Checkout as a JSONObject
- */
-        try {
-            JSONObject options = new JSONObject();
-
-            /**
-             * Merchant Name
-             * eg: ACME Corp || HasGeek etc.
-             */
-            options.put("name", "Codecorp");
-
-            /**
-             * Description can be anything
-             * eg: Order #123123 - This order number is passed by you for your internal reference. This is not the `razorpay_order_id`.
-             *     Invoice Payment
-             *     etc.
-             */
-            options.put("description", "Order #123456");
-            //options.put("order_id", "order_9A33XWu170gUtm");
-            options.put("currency", "INR");
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            options.put("email", user.getEmail());
-          //  options.put("contact", "9876543210");
-            /**
-             * Amount is always passed in currency subunits
-             * Eg: "500" = INR 5.00
-             */
-            options.put("amount", amount.getText().toString());
-
-            checkout.open(activity, options);
-        } catch(Exception e) {
-            Log.e("Activity", "Error in starting Razorpay Checkout", e);
-        }
-    }
-
-    @Override
-    public void onPaymentSuccess(String s) {
-        System.out.println(s);
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-        System.out.println(s+i);
-
 
     }
-}
+
+   void startPayment(){
+       Razorpay razorpay = new Razorpay(PrePaymentActivity.this);
+       razorpay.getPaymentMethods(new Razorpay.PaymentMethodsCallback() {
+           @Override
+           public void onPaymentMethodsReceived(String result) {
+               try {
+                   JSONObject paymentMethods = new JSONObject(result);
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+           }
+
+           @Override
+           public void onError(String error){
+
+           }
+       });
+
+       webview = findViewById(R.id.payment_webview);
+       // Hide the webview until the payment details are submitted
+       webview.setVisibility(View.GONE);
+
+       razorpay.setWebView(webview);
+
+       try {
+
+           JSONObject data = new JSONObject();
+           data.put("amount", 1000); // pass in currency subunits. For example, paise. Amount: 1000 equals ₹10
+           data.put("email", "somecustomer@somesite.com");
+           data.put("contact", "9876543210");
+           JSONObject notes = new JSONObject();
+           notes.put("custom_field", "abc");
+           data.put("notes", notes);
+           data.put("method", "netbanking");
+           // Method specific fields
+           data.put("bank", "HDFC");
+
+           // Make webview visible before submitting payment details
+           webview.setVisibility(View.VISIBLE);
+
+           razorpay.submit(data, new PaymentResultListener() {
+               @Override
+               public void onPaymentSuccess(String razorpayPaymentId) {
+                   // Razorpay payment ID is passed here after a successful payment
+               }
+
+               @Override
+               public void onPaymentError(int code, String description) {
+                   // Error code and description is passed here
+               }
+           });
+
+       } catch (Exception e) {
+           Log.e("", "Error in submitting payment details", e);
+       }
+   }
+
+   }

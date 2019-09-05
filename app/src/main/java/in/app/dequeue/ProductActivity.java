@@ -29,6 +29,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,10 @@ public class ProductActivity extends AppCompatActivity{
     LinearLayout linearLayout;
     Button checkout;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +68,9 @@ public class ProductActivity extends AppCompatActivity{
    void initViews(){
 
        cart = new ArrayList<>();
+
+       firebaseAuth = FirebaseAuth.getInstance();
+       user = firebaseAuth.getCurrentUser();
 
        listView = (ListView) findViewById(R.id.list_item);
        listView.setVisibility(View.GONE);
@@ -240,9 +249,17 @@ public class ProductActivity extends AppCompatActivity{
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductActivity.this, PrePaymentActivity.class);
-                intent.putExtra("amount", ""+(100*sum1));
-                startActivity(intent);
+                if(user!=null){
+                    Intent intent = new Intent(ProductActivity.this, CheckoutActivity.class);
+                    intent.putExtra("amount", ""+(100*sum1));
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(ProductActivity.this, MobileActivity.class);
+                    intent.putExtra("amount", ""+(100*sum1));
+                    startActivity(intent);
+                }
+
             }
         });
     }
